@@ -1,0 +1,25 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.db"
+}
+
+// // Just to start things
+// generator nestjsDto {
+//     provider                        = "prisma-generator-nestjs-dto"
+//     output                          = "../src"
+//     outputToNestJsResourceStructure = "true"
+//     fileNamingStyle                 = "kebab"
+// }
+
+model Post {
+    id        Int      @id @default(autoincrement())
+    title     String
+    /// @DtoReadOnly
+    createdAt DateTime @default(now())
+    /// @DtoReadOnly
+    updatedAt DateTime @updatedAt
+}
