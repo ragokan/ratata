@@ -1,33 +1,38 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  HttpException,
-  Injectable,
-  SetMetadata,
-  UseGuards,
-} from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, SetMetadata, UseGuards } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
+import { JwtService } from "@nestjs/jwt";
 import { ApiBearerAuth } from "@nestjs/swagger";
+import { Role } from "@prisma/client";
 import { FastifyRequest } from "fastify";
-import { Role } from "src/common/guards/role.dto";
+import { JwtPayload } from "src/common/guards/jwt-payload.dto";
+import { UnauthorizedException } from "src/common/guards/unauthorized.exception";
 
 @Injectable()
 class AuthGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
+  constructor(private reflector: Reflector, private jwtService: JwtService) {}
 
-  canActivate(context: ExecutionContext) {
+  async canActivate(context: ExecutionContext) {
     try {
       const request = context.switchToHttp().getRequest<FastifyRequest>();
       const authHeader = request.headers.authorization;
-      if (!authHeader.startsWith("Bearer ")) {
-        throw new HttpException("You are not authorized men!", 401);
-      }
 
+      if (!authHeader.startsWith("Bearer ")) {
+        throw new UnauthorizedException();
+      }
+      const token = authHeader.split(" ")[1];
+
+      const payload = await this.jwtService.verifyAsync<JwtPayload>(token);
       const role = this.reflector.get<Role>("role", context.getHandler());
 
-      return true;
-    } catch (error) {
-      return false;
+      if (role === Role.USER || payload.role === "ADMIN") {
+        return true;
+      }
+
+      // Somehow user can't access this page.
+      throw new UnauthorizedException();
+    } catch (_) {
+      // An error happened, so probably token is not valid.
+      throw new UnauthorizedException();
     }
   }
 }
