@@ -20,9 +20,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:push": "prisma db push",
+    "db:sync": "prisma db push",
     "db:migrate": "prisma migrate dev",
-    "db:generate": "prisma generate && npm run format",
-    "db:sync": "prisma generate && prisma db push"
+    "db:generate": "prisma generate && npm run format"
   },
   "dependencies": {
     "@fastify/static": "^6.5.0",
@@ -30,6 +30,7 @@
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.8",
     "@nestjs/cqrs": "^9.0.1",
+    "@nestjs/jwt": "^9.0.0",
     "@nestjs/mapped-types": "^1.1.0",
     "@nestjs/platform-fastify": "^9.0.8",
     "@nestjs/swagger": "^6.0.5",
@@ -52,7 +53,6 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
-    "@vegardit/prisma-generator-nestjs-dto": "^1.5.1",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "jest": "28.1.3",

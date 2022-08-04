@@ -15,14 +15,14 @@ import { DeletePostHandler } from "./commands/handlers/delete-post.handler";
 import { GetSinglePostQuery } from "./queries/impl/get-signle-post.query";
 import { GetSinglePostHandler } from "./queries/handlers/get-single-post.handler";
 import { PostEntity } from "src/post/entities/post.entity";
-import { StatusCodes } from "src/common/constants";
+import { STATUS_CODES } from "src/common/constants";
 
 @ApiTags("Post")
 @Controller("post")
 export class PostController {
   constructor(private commandBus: CommandBus, private queryBus: QueryBus) {}
 
-  @HttpCode(StatusCodes.CREATED)
+  @HttpCode(STATUS_CODES.CREATED)
   @Post()
   async create(@Body() createPostDto: CreatePostDto): Promise<PostEntity> {
     // custom command bus with types

@@ -3,23 +3,29 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = "file:./dev.db"
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
-// // Just to start things
-// generator nestjsDto {
-//     provider                        = "prisma-generator-nestjs-dto"
-//     output                          = "../src"
-//     outputToNestJsResourceStructure = "true"
-//     fileNamingStyle                 = "kebab"
-// }
+model User {
+    // Base
+    id Int @id @default(autoincrement())
+
+    name            String
+    email           String @unique
+    hashed_password String @db.VarChar(255)
+
+    // Utils
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}
 
 model Post {
-    id         Int      @id @default(autoincrement())
-    title      String
-    /// @DtoReadOnly
+    // Base
+    id    Int    @id @default(autoincrement())
+    title String
+
+    // Utils
     created_at DateTime @default(now())
-    /// @DtoReadOnly
     updated_at DateTime @updatedAt
 }

@@ -2,13 +2,13 @@
   "files.exclude": {
     "**/*.json": true,
     "**/.eslintrc.js": true,
-    "**/prisma": true
+    "**/prisma": true,
+    "**/*.env": true
   },
   "search.exclude": {
     "**/*.json": false,
     "**/.eslintrc.js": false,
-    "**/prisma": false
-  },
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "prettier.printWidth": 100
+    "**/prisma": false,
+    "**/*.env": false
+  }
 }
