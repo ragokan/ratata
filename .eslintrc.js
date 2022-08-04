@@ -26,6 +26,8 @@ module.exports = {
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-useless-constructor": "off",
+    "@typescript-eslint/no-empty-function": "off",
 
     // Enable
     "@typescript-eslint/no-shadow": "error",
@@ -41,7 +43,6 @@ module.exports = {
     "@typescript-eslint/require-await": "error",
     "@typescript-eslint/dot-notation": "error",
     "@typescript-eslint/no-throw-literal": "error",
-    "@typescript-eslint/no-useless-constructor": "error",
     "@typescript-eslint/default-param-last": "error",
     "@typescript-eslint/no-dupe-class-members": "error",
     "@typescript-eslint/no-duplicate-imports": "error",

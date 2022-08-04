@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
-import { AuthService } from "./auth.service";
 import { AuthController } from "./auth.controller";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { ENV } from "src/common/constants";
+import { CqrsModule } from "@nestjs/cqrs";
 
 @Module({
   imports: [
@@ -13,8 +13,8 @@ import { ENV } from "src/common/constants";
         signOptions: { expiresIn: configService.get<string>(ENV.JWT_EXPIRE) },
       }),
     }),
+    CqrsModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService],
 })
 export class AuthModule {}
