@@ -16,10 +16,10 @@ datasource db {
 // }
 
 model Post {
-    id        Int      @id @default(autoincrement())
-    title     String
+    id         Int      @id @default(autoincrement())
+    title      String
     /// @DtoReadOnly
-    createdAt DateTime @default(now())
+    created_at DateTime @default(now())
     /// @DtoReadOnly
-    updatedAt DateTime @updatedAt
+    updated_at DateTime @updatedAt
 }

@@ -6,12 +6,12 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { ApiBearerAuth } from "@nestjs/swagger";
-import { Request } from "express";
+import { FastifyRequest } from "fastify";
 
 @Injectable()
 class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext) {
-    const request = context.switchToHttp().getRequest<Request>();
+    const request = context.switchToHttp().getRequest<FastifyRequest>();
     const authHeader = request.headers.authorization;
     if (!authHeader.startsWith("Bearer ")) {
       // TODO: Instantiate it.

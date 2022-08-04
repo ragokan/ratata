@@ -30,13 +30,14 @@ module.exports = {
     // Enable
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": [
-      "error",
+      "warn",
       {
         argsIgnorePattern: "^_",
         varsIgnorePattern: "^_",
         caughtErrorsIgnorePattern: "^_",
       },
     ],
+    "@typescript-eslint/no-unused-expressions": "warn",
     "@typescript-eslint/require-await": "error",
     "@typescript-eslint/dot-notation": "error",
     "@typescript-eslint/no-throw-literal": "error",
@@ -47,7 +48,6 @@ module.exports = {
     "@typescript-eslint/no-invalid-this": "error",
     "@typescript-eslint/no-redeclare": "error",
     "@typescript-eslint/no-restricted-imports": "error",
-    "@typescript-eslint/no-unused-expressions": "error",
     "@typescript-eslint/no-use-before-define": "error",
   },
 };
