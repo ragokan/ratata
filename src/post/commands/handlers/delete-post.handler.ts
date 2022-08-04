@@ -7,6 +7,7 @@ export class DeletePostHandler implements ICommandHandler<DeletePostCommand> {
   constructor(private postRepository: PostRepository) {}
 
   async execute(command: DeletePostCommand) {
-    return this.postRepository.delete(command.id);
+    await this.postRepository.delete(command.id);
+    return true;
   }
 }

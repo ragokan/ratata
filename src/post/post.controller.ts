@@ -14,6 +14,7 @@ import { DeletePostCommand } from "./commands/impl/delete-post.command";
 import { DeletePostHandler } from "./commands/handlers/delete-post.handler";
 import { GetSinglePostQuery } from "./queries/impl/get-signle-post.query";
 import { GetSinglePostHandler } from "./queries/handlers/get-single-post.handler";
+import { PostEntity } from "src/post/entities/post.entity";
 
 @ApiTags("Post")
 @Controller("post")
@@ -21,7 +22,7 @@ export class PostController {
   constructor(private commandBus: CommandBus, private queryBus: QueryBus) {}
 
   @Post()
-  async create(@Body() createPostDto: CreatePostDto) {
+  async create(@Body() createPostDto: CreatePostDto): Promise<PostEntity> {
     // custom command bus with types
     return this.commandBus.execute<CreatePostCommand, HandlerReturns<CreatePostHandler>>(
       new CreatePostCommand(createPostDto)
@@ -29,28 +30,28 @@ export class PostController {
   }
 
   @Get()
-  async findAll() {
+  async findAll(): Promise<Array<PostEntity>> {
     return this.queryBus.execute<GetPostsQuery, HandlerReturns<GetPostsHandler>>(
       new GetPostsQuery()
     );
   }
 
   @Get(":id")
-  async findOne(@Param("id") id: number) {
+  async findOne(@Param("id") id: number): Promise<PostEntity> {
     return this.queryBus.execute<GetSinglePostQuery, HandlerReturns<GetSinglePostHandler>>(
       new GetSinglePostQuery(id)
     );
   }
 
   @Patch(":id")
-  async update(@Param("id") id: number, @Body() updatePostDto: UpdatePostDto) {
+  async update(@Param("id") id: number, @Body() updatePostDto: UpdatePostDto): Promise<PostEntity> {
     return this.commandBus.execute<UpdatePostCommand, HandlerReturns<UpdatePostHandler>>(
       new UpdatePostCommand(id, updatePostDto)
     );
   }
 
   @Delete(":id")
-  async remove(@Param("id") id: number) {
+  async remove(@Param("id") id: number): Promise<boolean> {
     return this.commandBus.execute<DeletePostCommand, HandlerReturns<DeletePostHandler>>(
       new DeletePostCommand(id)
     );
