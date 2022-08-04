@@ -11,10 +11,11 @@ const CommandHandlers = [RegisterHandler, LoginHandler];
 @Module({
   imports: [
     JwtModule.registerAsync({
-      useFactory: (configService: ConfigService) => ({
+      useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>(ENV.JWT_SECRET),
         signOptions: { expiresIn: configService.get<string>(ENV.JWT_EXPIRE) },
       }),
+      inject: [ConfigService],
     }),
     CqrsModule,
   ],

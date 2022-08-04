@@ -1,9 +1,10 @@
+/// <reference path="./common/types/fastify.d.ts" />
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
 import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fastify";
-import { k_app_name } from "src/common/constants";
+import { kAppName } from "src/common/constants";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
@@ -13,13 +14,13 @@ async function bootstrap() {
 
   // Documents
   const config = new DocumentBuilder()
-    .setTitle(k_app_name)
-    .setDescription(`The documentation of the ${k_app_name}!`)
+    .setTitle(kAppName)
+    .setDescription(`The documentation of the ${kAppName}!`)
     .setVersion("1.0")
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup("api-docs", app, document, { customSiteTitle: k_app_name });
+  SwaggerModule.setup("api-docs", app, document, { customSiteTitle: kAppName });
 
   // Validation
   app.useGlobalPipes(new ValidationPipe({ transform: true }));

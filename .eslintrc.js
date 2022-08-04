@@ -28,6 +28,8 @@ module.exports = {
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-useless-constructor": "off",
     "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/triple-slash-reference": "off",
 
     // Enable
     "@typescript-eslint/no-shadow": "error",
@@ -39,8 +41,6 @@ module.exports = {
         caughtErrorsIgnorePattern: "^_",
       },
     ],
-    "@typescript-eslint/no-unused-expressions": "warn",
-    "@typescript-eslint/require-await": "error",
     "@typescript-eslint/dot-notation": "error",
     "@typescript-eslint/no-throw-literal": "error",
     "@typescript-eslint/default-param-last": "error",
@@ -51,11 +51,12 @@ module.exports = {
     "@typescript-eslint/no-restricted-imports": "error",
     "@typescript-eslint/no-use-before-define": "error",
 
+    "@typescript-eslint/no-unused-expressions": "warn",
     "@typescript-eslint/naming-convention": [
-      "error",
+      "warn",
       {
-        selector: "variable",
-        format: ["snake_case", "PascalCase"],
+        selector: "default",
+        format: ["camelCase", "PascalCase", "UPPER_CASE"],
         leadingUnderscore: "allow",
       },
     ],

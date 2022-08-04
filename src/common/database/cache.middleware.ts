@@ -1,21 +1,21 @@
 import { Prisma } from "@prisma/client";
 import Redis from "ioredis";
 
-const mutation_actions = ["create", "update", "delete", "deleteMany", "updateMany"];
-const query_actions = ["findUnique", "findMany", "count"];
-const all_actions = [...mutation_actions, ...query_actions];
+const mutationActions = ["create", "update", "delete", "deleteMany", "updateMany"];
+const queryActions = ["findUnique", "findMany", "count"];
+const allActions = [...mutationActions, ...queryActions];
 
-export function cache_middleware(
+export function cacheMiddleware(
   redis: Redis,
   cacheDuration = 100 // 100 seconds
 ): Prisma.Middleware<any> {
   return async (operation, execute) => {
     const { action, model = "", args: _args = {} } = operation;
-    if (!all_actions.includes(action)) return execute(operation);
+    if (!allActions.includes(action)) return execute(operation);
     const args = JSON.stringify(_args);
 
     // If the action is findUnique or findMany, we read it from the cache.
-    if (query_actions.includes(action)) {
+    if (queryActions.includes(action)) {
       const key = `${model}:${action}:${args}`;
       const cache = await redis.get(key);
       if (cache) {
@@ -37,8 +37,8 @@ export function cache_middleware(
       for (const key of keys) {
         await redis.del(key);
       }
-      const keys_to_increment = await redis.keys(`${model}:count:*`);
-      for (const key of keys_to_increment) {
+      const keysToIncrement = await redis.keys(`${model}:count:*`);
+      for (const key of keysToIncrement) {
         await redis.incr(key);
       }
     } else {

@@ -18,14 +18,14 @@ export class LoginHandler implements ICommandHandler<LoginCommand, AuthResponseD
       where: { email },
     });
 
-    const error_messsage = "E-posta veya şifre yanlış.";
+    const errorMessage = "E-posta veya şifre yanlış.";
     if (!user) {
-      throw new HttpException(error_messsage, 404);
+      throw new HttpException(errorMessage, 404);
     }
 
-    const is_valid = await bcrypt.compare(password, user.hashed_password);
-    if (!is_valid) {
-      throw new HttpException(error_messsage, 404);
+    const isValid = await bcrypt.compare(password, user.hashedPassword);
+    if (!isValid) {
+      throw new HttpException(errorMessage, 404);
     }
 
     const token = this.jwtService.sign({ id: user.id, role: user.role } as JwtPayload);

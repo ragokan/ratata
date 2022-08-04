@@ -13,13 +13,13 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand, AuthRes
   async execute(command: RegisterCommand) {
     const { name, email, password } = command.dto;
 
-    const hashed_password = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await this.dbService.user.create({
       data: {
         name,
         email,
-        hashed_password,
+        hashedPassword,
       },
     });
 

@@ -12,6 +12,6 @@ export class UserEntity {
 
   role: Role;
 
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
