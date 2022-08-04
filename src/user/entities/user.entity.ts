@@ -7,7 +7,7 @@ export class UserEntity {
   @MinLength(3, { message: "İsminiz en az 3 karakter olmalıdır." })
   name: string;
 
-  @IsEmail(null, { message: "E-posta adresi geçerli değil." })
+  @IsEmail({}, { message: "E-posta adresi geçerli değil." })
   email: string;
 
   role: Role;

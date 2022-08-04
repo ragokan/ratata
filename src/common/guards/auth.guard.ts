@@ -23,8 +23,10 @@ class AuthGuard implements CanActivate {
 
       const payload = this.jwtService.verify<JwtPayload>(token);
       const role = this.reflector.get<Role>("role", context.getHandler());
+      console.log({ role });
 
-      if (role === Role.USER || payload.role === "ADMIN") {
+      if (role === Role.USER || payload.role === Role.ADMIN) {
+        request.jwtPayload = payload;
         return true;
       }
 
@@ -44,6 +46,6 @@ export const Auth =
     {
       UseGuards(AuthGuard)(...args);
       ApiBearerAuth()(...args);
-      SetMetadata("role", role);
+      SetMetadata("role", role)(...args);
     }
   };
