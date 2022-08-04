@@ -50,5 +50,14 @@ module.exports = {
     "@typescript-eslint/no-redeclare": "error",
     "@typescript-eslint/no-restricted-imports": "error",
     "@typescript-eslint/no-use-before-define": "error",
+
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        selector: "variable",
+        format: ["snake_case", "PascalCase"],
+        leadingUnderscore: "allow",
+      },
+    ],
   },
 };

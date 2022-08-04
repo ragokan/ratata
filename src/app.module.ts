@@ -7,11 +7,13 @@ import { DatabaseModule } from "./common/database/database.module";
 import { PostModule } from "./post/post.module";
 import { UserModule } from "./user/user.module";
 import { AuthModule } from "./auth/auth.module";
+import { RedisModule } from "src/common/redis/redis.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, cache: true }),
     DatabaseModule.forRoot(),
+    RedisModule.forRoot(),
     CqrsModule,
     UserModule,
     AuthModule,

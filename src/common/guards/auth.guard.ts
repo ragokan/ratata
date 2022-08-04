@@ -14,12 +14,12 @@ class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext) {
     try {
       const request = context.switchToHttp().getRequest<FastifyRequest>();
-      const authHeader = request.headers.authorization;
+      const auth_header = request.headers.authorization;
 
-      if (!authHeader.startsWith("Bearer ")) {
+      if (!auth_header.startsWith("Bearer ")) {
         throw new UnauthorizedException();
       }
-      const token = authHeader.split(" ")[1];
+      const token = auth_header.split(" ")[1];
 
       const payload = this.jwtService.verify<JwtPayload>(token);
       const role = this.reflector.get<Role>("role", context.getHandler());

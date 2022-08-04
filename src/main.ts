@@ -27,9 +27,9 @@ async function bootstrap() {
 
   const PORT = process.env.PORT || 8000;
   await app.listen(PORT, () => {
-    const _URL = `http://127.0.0.1:${PORT}`;
-    console.log(`App listening on ${_URL}`);
-    console.log(`For docs: ${_URL}/api-docs`);
+    const url = `http://127.0.0.1:${PORT}`;
+    console.log(`App listening on ${url}`);
+    console.log(`For docs: ${url}/api-docs`);
   });
 }
 bootstrap();
