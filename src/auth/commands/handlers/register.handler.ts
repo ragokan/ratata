@@ -4,8 +4,8 @@ import { DatabaseService } from "src/common/database/database.service";
 import { RegisterCommand } from "../impl/register.command";
 import { hash } from "bcrypt";
 import { AuthResponseDto } from "src/auth/dto/auth-response.dto";
-import { JwtPayload } from "src/common/guards/jwt-payload.dto";
-import { HttpException } from "@nestjs/common";
+import { JwtPayload } from "src/common/guards/auth/jwt-payload.dto";
+import { BadRequestException } from "@nestjs/common";
 
 @CommandHandler(RegisterCommand)
 export class RegisterHandler implements ICommandHandler<RegisterCommand, AuthResponseDto> {
@@ -22,7 +22,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand, AuthRes
     });
 
     if (userCheck) {
-      throw new HttpException("User already exists", 400);
+      throw new BadRequestException("User already exists");
     }
 
     const user = await this.dbService.user.create({

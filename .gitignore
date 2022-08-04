@@ -37,3 +37,5 @@ prisma/dev.db
 
 # RAG
 .env
+/public
+public

@@ -25,6 +25,7 @@
     "db:generate": "prisma generate && npm run format"
   },
   "dependencies": {
+    "@fastify/multipart": "^7.1.0",
     "@fastify/static": "^6.5.0",
     "@nestjs/common": "^9.0.8",
     "@nestjs/config": "^2.2.0",

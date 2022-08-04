@@ -4,8 +4,8 @@ import { JwtService } from "@nestjs/jwt";
 import { ApiBearerAuth } from "@nestjs/swagger";
 import { Role } from "@prisma/client";
 import { FastifyRequest } from "fastify";
-import { JwtPayload } from "src/common/guards/jwt-payload.dto";
-import { UnauthorizedException } from "src/common/guards/unauthorized.exception";
+import { JwtPayload } from "src/common/guards/auth/jwt-payload.dto";
+import { UnauthorizedException } from "src/common/guards/auth/unauthorized.exception";
 
 @Injectable()
 class AuthGuard implements CanActivate {

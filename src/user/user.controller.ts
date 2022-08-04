@@ -2,7 +2,7 @@ import { Controller, Get } from "@nestjs/common";
 import { QueryBus } from "@nestjs/cqrs";
 import { ApiTags } from "@nestjs/swagger";
 import { UserID } from "src/common/decorators/user-id.decorator";
-import { Auth } from "src/common/guards/auth.guard";
+import { Auth } from "src/common/guards/auth/auth.guard";
 import { HandlerReturns } from "src/common/helpers/cqrsReturn.type";
 import { GetUserQuery } from "src/user/queries/impl/get-user.query";
 import { GetUserHandler } from "src/user/queries/handler/get-user.handler";

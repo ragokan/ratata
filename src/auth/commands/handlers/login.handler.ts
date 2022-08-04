@@ -4,7 +4,7 @@ import { DatabaseService } from "src/common/database/database.service";
 import { LoginCommand } from "../impl/login.command";
 import { compare } from "bcrypt";
 import { AuthResponseDto } from "src/auth/dto/auth-response.dto";
-import { JwtPayload } from "src/common/guards/jwt-payload.dto";
+import { JwtPayload } from "src/common/guards/auth/jwt-payload.dto";
 import { HttpException } from "@nestjs/common";
 
 @CommandHandler(LoginCommand)

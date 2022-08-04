@@ -5,6 +5,8 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
 import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fastify";
 import { kAppName } from "src/common/constants";
+import fastifyMultipart from "@fastify/multipart";
+import { join, resolve } from "path";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
@@ -24,7 +26,12 @@ async function bootstrap() {
 
   // Validation
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+
   app.enableCors({ origin: "*" });
+
+  // Multipart
+  app.register(fastifyMultipart, { addToBody: true });
+  app.useStaticAssets({ root: join(resolve(), "public") });
 
   const PORT = process.env.PORT || 8000;
   await app.listen(PORT, () => {
