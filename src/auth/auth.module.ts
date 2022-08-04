@@ -1,10 +1,13 @@
 import { Module } from "@nestjs/common";
-import { AuthController } from "./auth.controller";
-import { JwtModule } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
-import { ENV } from "src/common/constants";
 import { CqrsModule } from "@nestjs/cqrs";
+import { JwtModule } from "@nestjs/jwt";
+import { LoginHandler } from "src/auth/commands/handlers/login.handler";
+import { RegisterHandler } from "src/auth/commands/handlers/register.handler";
+import { ENV } from "src/common/constants";
+import { AuthController } from "./auth.controller";
 
+const CommandHandlers = [RegisterHandler, LoginHandler];
 @Module({
   imports: [
     JwtModule.registerAsync({
@@ -16,5 +19,6 @@ import { CqrsModule } from "@nestjs/cqrs";
     CqrsModule,
   ],
   controllers: [AuthController],
+  providers: [...CommandHandlers],
 })
 export class AuthModule {}

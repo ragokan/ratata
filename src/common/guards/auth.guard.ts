@@ -11,7 +11,7 @@ import { UnauthorizedException } from "src/common/guards/unauthorized.exception"
 class AuthGuard implements CanActivate {
   constructor(private reflector: Reflector, private jwtService: JwtService) {}
 
-  async canActivate(context: ExecutionContext) {
+  canActivate(context: ExecutionContext) {
     try {
       const request = context.switchToHttp().getRequest<FastifyRequest>();
       const authHeader = request.headers.authorization;
@@ -21,7 +21,7 @@ class AuthGuard implements CanActivate {
       }
       const token = authHeader.split(" ")[1];
 
-      const payload = await this.jwtService.verifyAsync<JwtPayload>(token);
+      const payload = this.jwtService.verify<JwtPayload>(token);
       const role = this.reflector.get<Role>("role", context.getHandler());
 
       if (role === Role.USER || payload.role === "ADMIN") {
