@@ -1,10 +1,8 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { createWriteStream } from "fs";
-import { join, resolve } from "path";
+import { FileService } from "src/common/file/file.service";
 import { FileDto } from "src/common/guards/multipart/example-file.dto";
 import { Upload } from "src/common/guards/multipart/upload.guard";
-import { FileService } from "src/common/file/file.service";
 import { AppService } from "./app.service";
 
 @ApiTags("App")
