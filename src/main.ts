@@ -25,7 +25,7 @@ async function bootstrap() {
   SwaggerModule.setup("api-docs", app, document, { customSiteTitle: kAppName });
 
   // Validation
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalPipes(new ValidationPipe({ transform: true, forbidUnknownValues: true }));
 
   app.enableCors({ origin: "*" });
 

@@ -5,8 +5,8 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint/eslint-plugin"],
-  extends: ["plugin:@typescript-eslint/recommended"],
+  plugins: ["@typescript-eslint/eslint-plugin", "@darraghor/nestjs-typed"],
+  extends: ["plugin:@typescript-eslint/recommended", "plugin:@darraghor/nestjs-typed/recommended"],
   root: true,
   env: {
     node: true,
@@ -18,6 +18,8 @@ module.exports = {
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@darraghor/nestjs-typed/api-method-should-specify-api-response": "off",
+    "@darraghor/nestjs-typed/all-properties-are-whitelisted": "off",
 
     // Disable
     "no-empty": "off",
