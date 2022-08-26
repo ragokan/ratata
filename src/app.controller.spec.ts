@@ -11,7 +11,7 @@ describe("AppController", () => {
     appController = app.get<AppController>(AppController);
   });
 
-  afterAll(app.close);
+  afterAll(() => app?.close());
 
   describe("root", () => {
     it('should return "Hello World!"', () => {
