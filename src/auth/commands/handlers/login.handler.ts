@@ -28,7 +28,10 @@ export class LoginHandler implements ICommandHandler<LoginCommand, AuthResponseD
       throw new HttpException(errorMessage, 404);
     }
 
-    const token = this.jwtService.sign({ id: user.id, role: user.role } as JwtPayload);
+    const token = this.jwtService.sign({
+      id: user.id,
+      role: user.role,
+    } as JwtPayload);
 
     return {
       token,

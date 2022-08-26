@@ -33,7 +33,10 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand, AuthRes
       },
     });
 
-    const token = this.jwtService.sign({ id: user.id, role: user.role } as JwtPayload);
+    const token = this.jwtService.sign({
+      id: user.id,
+      role: user.role,
+    } as JwtPayload);
 
     return {
       token,

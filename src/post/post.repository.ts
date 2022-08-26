@@ -6,11 +6,7 @@ import { UpdatePostDto } from "./dto/update-post.dto";
 import { PostEntity } from "./entities/post.entity";
 
 @Injectable()
-export class PostRepository extends BaseRepository<
-  PostEntity,
-  CreatePostDto,
-  UpdatePostDto
-> {
+export class PostRepository extends BaseRepository<PostEntity, CreatePostDto, UpdatePostDto> {
   constructor(protected readonly dbService: DatabaseService) {
     super(dbService.post);
   }

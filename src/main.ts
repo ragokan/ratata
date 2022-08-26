@@ -30,7 +30,7 @@ async function bootstrap() {
   app.enableCors({ origin: "*" });
 
   // Multipart
-  app.register(fastifyMultipart, { addToBody: true });
+  app.register(fastifyMultipart as any, { addToBody: true });
   app.useStaticAssets({ root: join(resolve(), "public") });
 
   const PORT = process.env.PORT || 8000;
