@@ -4,8 +4,8 @@ import { LoginCommand } from "src/auth/commands/impl/login.command";
 import { AuthResponseDto } from "src/auth/dto/auth-response.dto";
 import { UserEntity } from "src/user/entities/user.entity";
 import { GetUserQuery } from "src/user/queries/impl/get-user.query";
-import { setupBeforeAll } from "test/setup-before-all";
-import { testUserLoginDto } from "test/test-user";
+import { setupBeforeAll } from "test/helpers/setup-before-all";
+import { testUserLoginDto } from "test/dto/test-user";
 
 describe("UserController", () => {
   let app: NestFastifyApplication;

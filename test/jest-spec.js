@@ -16,5 +16,5 @@ module.exports = {
     "src/(.*)": "<rootDir>/../src/$1",
     "test/(.*)": "<rootDir>/../test/$1",
   },
-  testSequencer: join(resolve(), "test", "test-sequencer-spec.js"),
+  testSequencer: join(resolve(), "test", "test-sequencer.js"),
 };

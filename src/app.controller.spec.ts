@@ -1,5 +1,5 @@
 import { NestFastifyApplication } from "@nestjs/platform-fastify";
-import { setupBeforeAll } from "test/setup-before-all";
+import { setupBeforeAll } from "test/helpers/setup-before-all";
 import { AppController } from "./app.controller";
 
 describe("AppController", () => {

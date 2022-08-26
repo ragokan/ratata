@@ -7,8 +7,8 @@ import { RegisterCommand } from "src/auth/commands/impl/register.command";
 import { AuthResponseDto } from "src/auth/dto/auth-response.dto";
 import { JwtPayload } from "src/common/guards/auth/jwt-payload.dto";
 import { UserEntity } from "src/user/entities/user.entity";
-import { setupBeforeAll } from "test/setup-before-all";
-import { testUserLoginDto, testUserRegisterDto } from "test/test-user";
+import { setupBeforeAll } from "test/helpers/setup-before-all";
+import { testUserLoginDto, testUserRegisterDto } from "test/dto/test-user";
 
 describe("AuthController", () => {
   let app: NestFastifyApplication;
