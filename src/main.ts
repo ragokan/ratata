@@ -7,6 +7,7 @@ import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fa
 import { kAppName } from "src/common/constants";
 import fastifyMultipart from "@fastify/multipart";
 import { join, resolve } from "path";
+import { DatabaseService } from "src/common/database/database.service";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
@@ -32,6 +33,9 @@ async function bootstrap() {
   // Multipart
   app.register(fastifyMultipart as any, { addToBody: true });
   app.useStaticAssets({ root: join(resolve(), "public") });
+
+  const databaseService = app.get(DatabaseService);
+  databaseService.enableShutdownHooks(app);
 
   const PORT = process.env.PORT || 8000;
   await app.listen(PORT, () => {

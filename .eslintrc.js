@@ -36,7 +36,7 @@ module.exports = {
     // Enable
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": [
-      "warn",
+      "off",
       {
         argsIgnorePattern: "^_",
         varsIgnorePattern: "^_",
