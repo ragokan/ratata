@@ -19,6 +19,13 @@ describe("Auth", () => {
     dto = await testLoginHelper(api);
   });
 
+  it("GET: Me - without token", async () => {
+    await api.get("/user/me").expect(HttpStatus.UNAUTHORIZED).expect({
+      statusCode: 401,
+      message: "Bu işlemi yapmak için giriş yapmanız gerekiyor.",
+    });
+  });
+
   it("GET: Me", async () => {
     const resp = await api
       .get("/user/me")
