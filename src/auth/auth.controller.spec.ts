@@ -19,7 +19,7 @@ describe("AuthController", () => {
     commandBus = app.get(CommandBus);
   });
 
-  afterAll(() => app?.close());
+  afterAll(async () => await app?.close());
 
   describe("register", () => {
     let token: string | undefined;

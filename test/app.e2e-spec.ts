@@ -12,5 +12,5 @@ describe("App", () => {
     return request(app.getHttpServer()).get("").expect(200).expect(app.get(AppService).getHello());
   });
 
-  afterAll(() => app.close());
+  afterAll(async () => await app.close());
 });

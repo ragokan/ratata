@@ -23,6 +23,7 @@ export class AuthController {
     );
   }
 
+  @HttpCode(HttpStatus.OK)
   @Post("login")
   async login(@Body() loginDto: LoginDto): Promise<AuthResponseDto> {
     return this.commandBus.execute<LoginCommand, HandlerReturns<LoginHandler>>(

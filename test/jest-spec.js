@@ -13,8 +13,8 @@ module.exports = {
     "^.+\\.(t|j)s$": "ts-jest",
   },
   moduleNameMapper: {
-    "src/(.*)": "<rootDir>/../src/$1",
-    "test/(.*)": "<rootDir>/../test/$1",
+    "src/(.*)": join(resolve(), "src", "$1"),
+    "test/(.*)": join(resolve(), "test", "$1"),
   },
   testSequencer: join(resolve(), "test", "test-sequencer.js"),
 };

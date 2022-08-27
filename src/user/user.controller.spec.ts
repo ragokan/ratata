@@ -18,7 +18,7 @@ describe("UserController", () => {
     queryBus = app.get(QueryBus);
   });
 
-  afterAll(() => app?.close());
+  afterAll(async () => await app?.close());
 
   let user: UserEntity;
   it("logins", async () => {

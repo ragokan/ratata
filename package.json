@@ -22,7 +22,7 @@
     "db:sync": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:generate": "prisma generate && npm run format",
-    "test:setup:db": "DATABASE_URL=postgres://ragokan:hammer90@localhost:5432/ratatatest npx prisma db push --force-reset"
+    "test:setup:db": "DATABASE_URL=postgres://ragokan:hammer90@localhost:5432/ratatatest npx prisma db push --force-reset && clear"
   },
   "dependencies": {
     "@fastify/multipart": "^7.1.0",
