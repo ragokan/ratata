@@ -20,6 +20,7 @@ model User {
     email          String @unique
     hashedPassword String @db.VarChar(255)
     role           Role   @default(USER)
+    posts          Post[]
 
     // Utils
     createdAt DateTime @default(now())
@@ -30,6 +31,10 @@ model Post {
     // Base
     id    Int    @id @default(autoincrement())
     title String
+
+    // Relation
+    userId Int
+    user   User @relation(fields: [userId], references: [id])
 
     // Utils
     createdAt DateTime @default(now())

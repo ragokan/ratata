@@ -25,6 +25,8 @@ import { DeletePostHandler } from "./commands/handlers/delete-post.handler";
 import { GetSinglePostQuery } from "./queries/impl/get-signle-post.query";
 import { GetSinglePostHandler } from "./queries/handlers/get-single-post.handler";
 import { PostEntity } from "src/post/entities/post.entity";
+import { Auth } from "src/common/guards/auth/auth.guard";
+import { CreatorOnly } from "src/common/guards/creator/creator.guard";
 
 @ApiTags("Post")
 @Controller("post")
@@ -32,6 +34,7 @@ export class PostController {
   constructor(private commandBus: CommandBus, private queryBus: QueryBus) {}
 
   @HttpCode(HttpStatus.CREATED)
+  @Auth("USER")
   @Post()
   async create(@Body() createPostDto: CreatePostDto): Promise<PostEntity> {
     // custom command bus with types
@@ -54,6 +57,8 @@ export class PostController {
     );
   }
 
+  @CreatorOnly({ model: "post" })
+  @Auth("USER")
   @Patch(":id")
   async update(@Param("id") id: number, @Body() updatePostDto: UpdatePostDto): Promise<PostEntity> {
     return this.commandBus.execute<UpdatePostCommand, HandlerReturns<UpdatePostHandler>>(
@@ -61,6 +66,8 @@ export class PostController {
     );
   }
 
+  @CreatorOnly({ model: "post" })
+  @Auth("USER")
   @Delete(":id")
   async remove(@Param("id") id: number): Promise<boolean> {
     return this.commandBus.execute<DeletePostCommand, HandlerReturns<DeletePostHandler>>(

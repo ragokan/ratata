@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable, SetMetadata, UseGuards } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { JwtService } from "@nestjs/jwt";
-import { ApiBearerAuth } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiHideProperty, ApiSecurity } from "@nestjs/swagger";
 import { Role } from "@prisma/client";
 import { FastifyRequest } from "fastify";
 import { JwtPayload } from "src/common/guards/auth/jwt-payload.dto";
