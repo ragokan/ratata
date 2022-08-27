@@ -2,6 +2,7 @@ import { HttpStatus } from "@nestjs/common";
 import { NestFastifyApplication } from "@nestjs/platform-fastify";
 import { Role } from "@prisma/client";
 import { AuthResponseDto } from "src/auth/dto/auth-response.dto";
+import { UnauthorizedException } from "src/common/guards/auth/unauthorized.exception";
 import { UserEntity } from "src/user/entities/user.entity";
 import * as request from "supertest";
 import { testUserRegisterDto } from "test/dto/test-user";
@@ -22,7 +23,7 @@ describe("Auth", () => {
   it("GET: Me - without token", async () => {
     await api.get("/user/me").expect(HttpStatus.UNAUTHORIZED).expect({
       statusCode: 401,
-      message: "Bu işlemi yapmak için giriş yapmanız gerekiyor.",
+      message: new UnauthorizedException().message,
     });
   });
 
