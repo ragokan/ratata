@@ -1,16 +1,9 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  HttpException,
-  HttpStatus,
-  Injectable,
-  SetMetadata,
-  UseGuards,
-} from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, SetMetadata, UseGuards } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { FastifyRequest } from "fastify";
 import { DatabaseService } from "src/common/database/database.service";
 import { JwtPayload } from "src/common/guards/auth/jwt-payload.dto";
+import { CreatorException } from "src/common/guards/creator/creator.exception";
 import { CreatorPayload } from "src/common/guards/creator/creator.types";
 
 @Injectable()
@@ -35,23 +28,19 @@ class CreatorGuard implements CanActivate {
       });
 
       if (!data) {
-        throw new HttpException(
-          `The ${model} you are looking for is not found.`,
-          HttpStatus.NOT_FOUND
-        );
+        throw new CreatorException({ messageBuilder: (messages) => messages.notFound(model) });
       }
 
       if (data[userIdKey] !== userId) {
-        throw new HttpException(
-          `You are forbidden to ${request.method.toLowerCase()} this ${model}.`,
-          HttpStatus.FORBIDDEN
-        );
+        throw new CreatorException({
+          messageBuilder: (messages) => messages.notCreator(model, request.method.toLowerCase()),
+        });
       }
 
       return true;
     } catch (_) {
       // An error happened, so probably token is not valid.
-      throw new HttpException("You are not authorized to do this operation.", HttpStatus.FORBIDDEN);
+      throw new CreatorException({ messageBuilder: (messages) => messages.default });
     }
   }
 }

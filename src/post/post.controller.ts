@@ -27,6 +27,7 @@ import { GetSinglePostHandler } from "./queries/handlers/get-single-post.handler
 import { PostEntity } from "src/post/entities/post.entity";
 import { Auth } from "src/common/guards/auth/auth.guard";
 import { CreatorOnly } from "src/common/guards/creator/creator.guard";
+import { UserID } from "src/common/decorators/user-id.decorator";
 
 @ApiTags("Post")
 @Controller("post")
@@ -36,10 +37,13 @@ export class PostController {
   @HttpCode(HttpStatus.CREATED)
   @Auth("USER")
   @Post()
-  async create(@Body() createPostDto: CreatePostDto): Promise<PostEntity> {
+  async create(
+    @Body() createPostDto: CreatePostDto,
+    @UserID() userId: number
+  ): Promise<PostEntity> {
     // custom command bus with types
     return this.commandBus.execute<CreatePostCommand, HandlerReturns<CreatePostHandler>>(
-      new CreatePostCommand(createPostDto)
+      new CreatePostCommand(createPostDto, userId)
     );
   }
 
@@ -60,9 +64,13 @@ export class PostController {
   @CreatorOnly({ model: "post" })
   @Auth("USER")
   @Patch(":id")
-  async update(@Param("id") id: number, @Body() updatePostDto: UpdatePostDto): Promise<PostEntity> {
+  async update(
+    @Param("id") id: number,
+    @Body() updatePostDto: UpdatePostDto,
+    @UserID() userId: number
+  ): Promise<PostEntity> {
     return this.commandBus.execute<UpdatePostCommand, HandlerReturns<UpdatePostHandler>>(
-      new UpdatePostCommand(id, updatePostDto)
+      new UpdatePostCommand(id, updatePostDto, userId)
     );
   }
 

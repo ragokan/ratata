@@ -1,11 +1,11 @@
-import { ICommandHandler, CommandHandler } from "@nestjs/cqrs";
+import { ForbiddenException } from "@nestjs/common";
+import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { JwtService } from "@nestjs/jwt";
-import { DatabaseService } from "src/common/database/database.service";
-import { LoginCommand } from "../impl/login.command";
 import { compare } from "bcrypt";
 import { AuthResponseDto } from "src/auth/dto/auth-response.dto";
+import { DatabaseService } from "src/common/database/database.service";
 import { JwtPayload } from "src/common/guards/auth/jwt-payload.dto";
-import { HttpException } from "@nestjs/common";
+import { LoginCommand } from "../impl/login.command";
 
 @CommandHandler(LoginCommand)
 export class LoginHandler implements ICommandHandler<LoginCommand, AuthResponseDto> {
@@ -20,12 +20,12 @@ export class LoginHandler implements ICommandHandler<LoginCommand, AuthResponseD
 
     const errorMessage = "E-posta veya şifre yanlış.";
     if (!user) {
-      throw new HttpException(errorMessage, 404);
+      throw new ForbiddenException(errorMessage);
     }
 
     const isValid = await compare(password, user.hashedPassword);
     if (!isValid) {
-      throw new HttpException(errorMessage, 404);
+      throw new ForbiddenException(errorMessage);
     }
 
     const token = this.jwtService.sign({
