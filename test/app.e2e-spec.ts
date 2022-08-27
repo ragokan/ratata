@@ -8,8 +8,8 @@ describe("App", () => {
 
   beforeAll(async () => (app = await setupBeforeAll()));
 
-  it("GET: hello", () => {
-    return request(app.getHttpServer()).get("").expect(200).expect(app.get(AppService).getHello());
+  it("GET: hello", async () => {
+    await request(app.getHttpServer()).get("").expect(200).expect(app.get(AppService).getHello());
   });
 
   afterAll(async () => await app.close());

@@ -25,6 +25,7 @@ describe("Auth", () => {
     expect(body.user.email).toEqual(testUserRegisterDto.email);
     expect(body.user.name).toEqual(testUserRegisterDto.name);
     expect(body.user.role).toEqual(Role.USER);
+    expect(body).not.toContain("password");
   });
 
   it("POST: Login", async () => {
@@ -34,6 +35,7 @@ describe("Auth", () => {
     expect(body.user.email).toEqual(testUserRegisterDto.email);
     expect(body.user.name).toEqual(testUserRegisterDto.name);
     expect(body.user.role).toEqual(Role.USER);
+    expect(body).not.toContain("password");
   });
 
   afterAll(async () => await app.close());
