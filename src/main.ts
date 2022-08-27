@@ -8,6 +8,7 @@ import { kAppName } from "src/common/constants";
 import fastifyMultipart from "@fastify/multipart";
 import { join, resolve } from "path";
 import { DatabaseService } from "src/common/database/database.service";
+import { ValidationExceptionFilter } from "src/common/filters/validation-exception.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
@@ -27,6 +28,7 @@ async function bootstrap() {
 
   // Validation
   app.useGlobalPipes(new ValidationPipe({ transform: true, forbidUnknownValues: true }));
+  app.useGlobalFilters(new ValidationExceptionFilter());
 
   app.enableCors({ origin: "*" });
 
