@@ -33,6 +33,8 @@ export class LoginHandler implements ICommandHandler<LoginCommand, AuthResponseD
       role: user.role,
     } as JwtPayload);
 
+    delete user.hashedPassword;
+
     return {
       token,
       user,

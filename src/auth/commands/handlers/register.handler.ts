@@ -38,6 +38,8 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand, AuthRes
       role: user.role,
     } as JwtPayload);
 
+    delete user.hashedPassword;
+
     return {
       token,
       user,

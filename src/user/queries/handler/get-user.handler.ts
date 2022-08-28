@@ -8,6 +8,10 @@ export class GetUserHandler implements IQueryHandler<GetUserQuery, UserEntity> {
   constructor(private dbService: DatabaseService) {}
 
   async execute(query: GetUserQuery) {
-    return this.dbService.user.findUnique({ where: { id: query.userId } });
+    const user = await this.dbService.user.findUnique({ where: { id: query.userId } });
+
+    delete user.hashedPassword;
+
+    return user;
   }
 }
