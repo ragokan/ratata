@@ -17,6 +17,11 @@ const config: Config = {
     "test/(.*)": join(resolve(), "test", "$1"),
   },
   testSequencer: join(resolve(), "test", "helpers", "test-sequencer.js"),
+  globals: {
+    "ts-jest": {
+      tsconfig: join(resolve(), "tsconfig.json"),
+    },
+  },
 };
 
 export default config;
