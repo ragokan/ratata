@@ -16,7 +16,6 @@ const config: Config = {
     "src/(.*)": join(resolve(), "src", "$1"),
     "test/(.*)": join(resolve(), "test", "$1"),
   },
-  testSequencer: join(resolve(), "test", "helpers", "test-sequencer.js"),
 };
 
 export default config;

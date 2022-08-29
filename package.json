@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "@darraghor/eslint-plugin-nestjs-typed": "^3.11.2",
-    "@jest/test-sequencer": "^29.0.1",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.1",
     "@nestjs/testing": "^9.0.11",

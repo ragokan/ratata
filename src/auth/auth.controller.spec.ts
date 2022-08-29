@@ -7,8 +7,8 @@ import { RegisterCommand } from "src/auth/commands/impl/register.command";
 import { AuthResponseDto } from "src/auth/dto/auth-response.dto";
 import { JwtPayload } from "src/common/guards/auth/jwt-payload.dto";
 import { UserEntity } from "src/user/entities/user.entity";
+import { testUserLoginDto2, testUserRegisterDto2 } from "test/dto/test-user";
 import { setupBeforeAll } from "test/helpers/setup-before-all";
-import { testUserLoginDto, testUserRegisterDto } from "test/dto/test-user";
 
 describe("AuthController", () => {
   let app: NestFastifyApplication;
@@ -27,7 +27,7 @@ describe("AuthController", () => {
 
     it("registers", async () => {
       const authResponse = await commandBus.execute<RegisterCommand, AuthResponseDto>(
-        new RegisterCommand(testUserRegisterDto)
+        new RegisterCommand(testUserRegisterDto2)
       );
 
       user = authResponse.user;
@@ -37,8 +37,8 @@ describe("AuthController", () => {
       expect(authResponse.token).toBeDefined();
       expect(user).toBeDefined();
       expect(user.id).toBeDefined();
-      expect(user.name).toBe(testUserRegisterDto.name);
-      expect(user.email).toBe(testUserRegisterDto.email);
+      expect(user.name).toBe(testUserRegisterDto2.name);
+      expect(user.email).toBe(testUserRegisterDto2.email);
       expect(user.role).toBe(Role.USER);
     });
 
@@ -57,7 +57,7 @@ describe("AuthController", () => {
 
     it("logins", async () => {
       const loginResponse = await commandBus.execute<LoginCommand, AuthResponseDto>(
-        new LoginCommand(testUserLoginDto)
+        new LoginCommand(testUserLoginDto2)
       );
 
       user = loginResponse.user;
@@ -67,8 +67,8 @@ describe("AuthController", () => {
       expect(loginResponse.token).toBeDefined();
       expect(user).toBeDefined();
       expect(user.id).toBeDefined();
-      expect(user.name).toBe(testUserRegisterDto.name);
-      expect(user.email).toBe(testUserRegisterDto.email);
+      expect(user.name).toBe(testUserRegisterDto2.name);
+      expect(user.email).toBe(testUserRegisterDto2.email);
       expect(user.role).toBe(Role.USER);
     });
 
