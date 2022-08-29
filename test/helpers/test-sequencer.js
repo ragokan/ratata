@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const Sequencer = require("@jest/test-sequencer").default;
 
-module.exports = class extends Sequencer {
+class CustomSequencer extends Sequencer {
   /** @param tests {Array<import("@jest/test-result").Test>} */
   sort(tests) {
     const authTestIndex = tests.findIndex((test) => test.path.includes("auth"));
@@ -14,4 +13,6 @@ module.exports = class extends Sequencer {
     copyArray.splice(0, 0, element);
     return copyArray;
   }
-};
+}
+
+module.exports = CustomSequencer;

@@ -14,8 +14,8 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --config ./test/config/jest-spec.ts --runInBand",
-    "test:e2e": "jest --config ./test/config/jest-e2e.ts --runInBand",
+    "test": "jest --config ./test/config/jest-spec.ts",
+    "test:e2e": "jest --config ./test/config/jest-e2e.ts",
     "db:push": "prisma db push",
     "db:sync": "prisma db push",
     "db:migrate": "prisma migrate dev",
@@ -69,22 +69,5 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "4.1.0",
     "typescript": "^4.8.2"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
   }
 }

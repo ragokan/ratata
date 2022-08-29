@@ -8,10 +8,11 @@ const config: Config = {
   rootDir: join(resolve(), "test"),
   testEnvironment: "node",
   testRegex: ".e2e-spec.ts$",
-  globalSetup: join(resolve(), "test", "helpers", "jest-global-setup.ts"),
+  globalSetup: join(resolve(), "test", "helpers", "jest-global-setup.js"),
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
   },
+  preset: "ts-jest",
   moduleNameMapper: {
     "src/(.*)": join(resolve(), "src", "$1"),
     "test/(.*)": join(resolve(), "test", "$1"),
