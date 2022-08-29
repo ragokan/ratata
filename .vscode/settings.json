@@ -11,6 +11,7 @@
     "**/.eslintrc.js": false,
     "**/prisma": false,
     "**/*.env": false,
+    "**/*.env.public": false,
     "**/*.js": false
   }
 }
