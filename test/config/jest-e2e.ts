@@ -9,6 +9,8 @@ const config: Config = {
   testEnvironment: "node",
   testRegex: ".e2e-spec.ts$",
   globalSetup: join(resolve(), "test", "helpers", "jest-global-setup.ts"),
+  cache: true,
+  onlyChanged: true,
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
   },

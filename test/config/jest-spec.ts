@@ -7,7 +7,9 @@ const config: Config = {
   moduleFileExtensions: ["js", "json", "ts"],
   rootDir: join(resolve(), "src"),
   testEnvironment: "node",
+  cache: true,
   testRegex: ".spec.ts$",
+  onlyChanged: true,
   globalSetup: join(resolve(), "test", "helpers", "jest-global-setup.ts"),
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
