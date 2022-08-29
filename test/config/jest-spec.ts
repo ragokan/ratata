@@ -8,7 +8,6 @@ const config: Config = {
   rootDir: join(resolve(), "src"),
   testEnvironment: "node",
   testRegex: ".spec.ts$",
-  maxConcurrency: 1,
   globalSetup: join(resolve(), "test", "helpers", "jest-global-setup.ts"),
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
