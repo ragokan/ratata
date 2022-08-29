@@ -9,6 +9,8 @@ module.exports = {
   rootDir: "../src",
   testEnvironment: "node",
   testRegex: ".spec.ts$",
+  maxConcurrency: 1,
+  globalSetup: join(resolve(), "test", "jest-global-setup.js"),
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
   },

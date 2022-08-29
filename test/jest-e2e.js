@@ -10,6 +10,7 @@ module.exports = {
   testEnvironment: "node",
   testRegex: ".e2e-spec.ts$",
   maxConcurrency: 1,
+  globalSetup: join(resolve(), "test", "jest-global-setup.js"),
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
   },
