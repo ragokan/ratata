@@ -25,13 +25,13 @@ export abstract class BaseRepository<Entity extends BaseEntity, CreateDto, Updat
 
   async update(id: number, dto: UpdateDto): Promise<WithoutRelationships<Entity>> {
     return this.delegate.update({
-      where: { id },
+      where: { id: +id },
       data: dto,
     });
   }
 
   async delete(id: number): Promise<void> {
-    await this.delegate.delete({ where: { id } });
+    await this.delegate.delete({ where: { id: +id } });
   }
   /* END: Write Data */
 }

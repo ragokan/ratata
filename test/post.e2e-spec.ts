@@ -57,7 +57,7 @@ describe("Post", () => {
       .delete(`/post/${createdPostId}`)
       .auth(dto.token, { type: "bearer" })
       .expect(HttpStatus.OK)
-      .expect(true);
+      .expect("true");
   });
 
   afterAll(async () => await app.close());
