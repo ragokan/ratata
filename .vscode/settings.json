@@ -3,15 +3,15 @@
     "**/*.json": true,
     "**/.eslintrc.js": true,
     "**/prisma": true,
-    "**/*.env": true,
+    "**/.env": true,
     "**/*.js": true
   },
   "search.exclude": {
     "**/*.json": false,
     "**/.eslintrc.js": false,
     "**/prisma": false,
-    "**/*.env": false,
-    "**/*.env.public": false,
+    "**/.env": false,
+    "**/.env.public": false,
     "**/*.js": false
   }
 }
