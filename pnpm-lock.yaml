@@ -26,6 +26,7 @@ specifiers:
   bcrypt: ^5.0.1
   class-transformer: ^0.5.1
   class-validator: ^0.13.2
+  dotenv: ^16.0.1
   eslint: ^8.22.0
   eslint-config-prettier: ^8.5.0
   fastify: ^4.5.2
@@ -81,6 +82,7 @@ devDependencies:
   '@types/supertest': 2.0.12
   '@typescript-eslint/eslint-plugin': 5.35.1_4kgehhvxgrxdvptdn2db7re534
   '@typescript-eslint/parser': 5.35.1_shit3uhl6a7megkzgoz6xssnfa
+  dotenv: 16.0.1
   eslint: 8.22.0
   eslint-config-prettier: 8.5.0_eslint@8.22.0
   jest: 29.0.0_vqz5d3y22yhywvm6xfyh7j5jna
@@ -2501,7 +2503,6 @@ packages:
   /dotenv/16.0.1:
     resolution: {integrity: sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==}
     engines: {node: '>=12'}
-    dev: false
 
   /ecdsa-sig-formatter/1.0.11:
     resolution: {integrity: sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==}

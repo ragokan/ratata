@@ -1,16 +1,14 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/naming-convention */
 
-const { resolve, join } = require("path");
+import { Config } from "jest";
+import { join, resolve } from "path";
 
-/** @type {import('jest').Config} */
-module.exports = {
+const config: Config = {
   moduleFileExtensions: ["js", "json", "ts"],
-  rootDir: ".",
+  rootDir: join(resolve(), "test"),
   testEnvironment: "node",
   testRegex: ".e2e-spec.ts$",
-  maxConcurrency: 1,
-  globalSetup: join(resolve(), "test", "jest-global-setup.js"),
+  globalSetup: join(resolve(), "test", "helpers", "jest-global-setup.ts"),
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
   },
@@ -18,5 +16,7 @@ module.exports = {
     "src/(.*)": join(resolve(), "src", "$1"),
     "test/(.*)": join(resolve(), "test", "$1"),
   },
-  testSequencer: join(resolve(), "test", "test-sequencer.js"),
+  testSequencer: join(resolve(), "test", "helpers", "test-sequencer.js"),
 };
+
+export default config;
